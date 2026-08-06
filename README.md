@@ -2,9 +2,7 @@
 
 Submit a PDF, poll a job, receive its tables as flat JSON.
 
-The extraction pipeline comes from `procurement-table-extraction-bench`, where every design
-decision here was measured rather than assumed. [SPEC.md](SPEC.md) is the contract; this file is
-how to run it.
+
 
 ## Run it
 
@@ -97,8 +95,3 @@ Everything is an environment variable and nothing is hard-coded. See
 Contract tests run against the null extractor, so the suite needs no credentials and costs
 nothing.
 
-## Not in v1
-
-No authentication, and no retention policy. Both are deliberate deferrals recorded in SPEC.md
-§7.2 and §7.3. **Do not expose this to the internet**: `HOST` defaults to `127.0.0.1` and
-binding wider requires `ALLOW_INSECURE_BIND=true`, which logs a warning on every boot.
