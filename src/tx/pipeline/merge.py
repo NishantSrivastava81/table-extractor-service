@@ -5,9 +5,7 @@ vision call, so fragments arrive separately and something has to join them.
 
 The decision and the execution are kept apart. A deterministic filter rejects pairs that cannot
 be continuations, a model answers only the narrow question "are these one table?", and a
-deterministic stitch does the joining. A model that decides can be logged and replayed; a model
-that writes can corrupt a value silently. On the reference corpus this lifted merge F1 from
-0.377 to 0.540 while changing identifier fidelity by exactly zero.
+deterministic stitch does the joining.
 """
 
 from __future__ import annotations

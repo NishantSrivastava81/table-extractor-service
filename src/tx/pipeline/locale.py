@@ -1,9 +1,6 @@
 """Number parsing that refuses to guess.
 
-`1.234` is 1234 in German and 1.234 in English, and no amount of cell-level cleverness resolves
-that from one cell. Getting it wrong changes a price by a factor of a thousand, silently. So the
-separator pair is decided per COLUMN, by testing every candidate against every cell, and a
-column where more than one candidate survives is reported as ambiguous rather than guessed.
+
 """
 
 from __future__ import annotations
