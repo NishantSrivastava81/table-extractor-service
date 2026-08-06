@@ -13,11 +13,7 @@ Copy-Item .env.example .env      # fill in the provider values
 .\.venv\Scripts\python.exe -m uvicorn tx.api.app:app --host 127.0.0.1 --port 8000
 ```
 
-That is the whole thing. No database, no queue broker, no object store: SQLite and the local
-filesystem, with the worker running inside the API process.
 
-To run without touching Azure at all, set `EXTRACTOR=null`. The full API works and returns a
-fixed sample result.
 
 ## Use it
 
