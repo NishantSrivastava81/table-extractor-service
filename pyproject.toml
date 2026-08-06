@@ -1,0 +1,54 @@
+[project]
+name = "table-extractor-service"
+version = "0.1.0"
+description = "Extract tables from PDFs and return flattened JSON, asynchronously."
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    "pydantic>=2.9",
+    "pydantic-settings>=2.6",
+    "python-multipart>=0.0.12",
+    "pypdfium2>=4.30",
+    "pillow>=11.0",
+    "beautifulsoup4>=4.12",
+    "lxml>=5.3",
+    "rapidfuzz>=3.10",
+    "prometheus-client>=0.21",
+]
+
+[project.optional-dependencies]
+azure = [
+    "openai>=1.55",
+    "azure-ai-documentintelligence>=1.0.0",
+    "azure-identity>=1.19",
+]
+dev = [
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "httpx>=0.28",
+    "ruff>=0.8",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tx"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.ruff.lint.per-file-ignores]
+# Calling Query/Header in a default is how FastAPI declares parameters.
+"src/tx/api/*.py" = ["B008"]
+"tests/*" = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
