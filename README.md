@@ -54,23 +54,7 @@ PDF ─► Document Intelligence (one call, whole document)
     ─► validate    every value must appear in the OCR reading, or it is flagged
 ```
 
-Only OCR, vision and the merge tie-breaks cost money. Everything else is local, which is why
-routing matters: on a 240-page contract it sent 69 pages instead of 240.
 
-## Three things worth knowing
-
-**Whole-page images cannot read a dense table.** The chat API normalises every image to a fixed
-visual-token budget, so rendering larger changes nothing. On a rasterised rate grid a whole page
-returned 0 of ~900 values; four strips returned 888. `RENDER_SCALE` matters only after cropping.
-
-**Ungrounded numbers are reported, not deleted.** Blanking every number the OCR leg could not
-confirm emptied 107 correct prices, because on a rasterised page OCR is the weaker reader.
-`GROUND_NUMBERS=false` is the default. Identifiers still fail closed, because a plausible wrong
-part number is worse than an empty cell.
-
-**Nested tables are exploded, not dropped.** The parent row repeats once per child row and child
-columns are appended as `rate_tiers__unit_price`. `_parent_row_index` and `_nest_path` make it
-reversible.
 
 ## Configuration
 
